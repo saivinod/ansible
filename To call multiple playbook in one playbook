@@ -1,0 +1,7 @@
+
+#main.yml ,execute new.yml and new1.yml all at one shot
+#################################################3333333
+---
+- include: new.yml
+- include: new1.yml
+######################################################
