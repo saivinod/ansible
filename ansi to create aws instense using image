@@ -1,0 +1,35 @@
+ancible.cfg
+---------------------------------
+[default]
+hostfile = hosts
+private_key_file = ~/.ssh/vinod-keys.pem
+remote_user = ubuntu
+-----------------------------------------------
+
+hosts 
+#####################################################################
+[perfiosjobserver]
+#####################################################################
+
+ec2.yml # play book to create an instanse using image 
+#####################################################################
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Provision a set of instances
+      ec2:
+        key_name: vinod-keys
+        instance_type: t2.micro
+        image: ami-f5cff6c5                #add image id
+        region: us-west-2           #add region
+        aws_access_key: 'AKIAJIOB67TG4MQ2BONQ'
+        aws_secret_key: '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'
+        wait: yes
+        group_id: sg-e258b586              #add security group
+        count: 1
+        vpc_subnet_id: subnet-078ae962      #add subnet id
+        assign_public_ip: yes
